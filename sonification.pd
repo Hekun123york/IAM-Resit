@@ -1,0 +1,231 @@
+#N canvas 43 72 1281 689 12;
+#N canvas 66 105 834 407 patch 1;
+#N canvas 0 147 992 499 output 1;
+#X obj 841 239 cnv 15 168 217 empty empty empty 20 12 0 14 #f400ca
+#404040 0;
+#X obj 518 229 cnv 15 246 196 empty empty empty 20 12 0 14 #008de7
+#404040 0;
+#X obj 667 563 *~;
+#X obj 666 605 dac~;
+#X obj 665 524 osc~;
+#X obj 555 289 r fre;
+#X obj 645 306 counter;
+#X floatatom 609 381 5 0 0 0 - - -, f 5;
+#X obj 644 268 bng 15 250 50 0 empty frequency empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 887 311 counter;
+#X floatatom 867 416 5 0 0 0 - - -, f 5;
+#X obj 896 281 bng 15 250 50 0 empty volume empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 856 383 * 0.1;
+#X obj 783 213 tgl 15 0 empty dsp empty 17 7 0 10 #fcfcfc #000000 #000000
+1 1;
+#X obj 578 331 *;
+#X floatatom 648 357 5 0 0 0 - - -, f 5;
+#X obj 616 328 + 3;
+#X msg 722 273 12;
+#X obj 865 349 + 1;
+#X msg 964 278 9;
+#X text 270 98 The blue area works for changing the output frequency.
+By using counter to input different value to mulitply with the frequency
+input can achieve this function. While the low frequency content is
+hard to distinguish \, the minimum value for multiply with is 3 \,
+this is a value after experiment that make sure the output sound can
+be easy to distinguish.;
+#X text 879 160 The pink area works for changing the volume. A counter
+has been designed to output value from 0.1 to 1 to make changes for
+the output sound.;
+#X obj 527 233 notein 2;
+#X obj 854 242 notein 3;
+#X obj 771 514 counter;
+#X msg 840 482 1;
+#X floatatom 819 551 5 0 0 0 - - -, f 5;
+#X obj 797 475 bng 15 250 50 0 empty switch empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X connect 2 0 3 0;
+#X connect 2 0 3 1;
+#X connect 4 0 2 0;
+#X connect 5 0 14 0;
+#X connect 6 0 16 0;
+#X connect 8 0 6 0;
+#X connect 9 0 18 0;
+#X connect 11 0 9 0;
+#X connect 12 0 10 0;
+#X connect 12 0 2 1;
+#X connect 13 0 17 0;
+#X connect 13 0 19 0;
+#X connect 13 0 11 0;
+#X connect 13 0 8 0;
+#X connect 13 0 25 0;
+#X connect 14 0 7 0;
+#X connect 14 0 4 0;
+#X connect 16 0 14 1;
+#X connect 16 0 15 0;
+#X connect 17 0 6 4;
+#X connect 18 0 12 0;
+#X connect 19 0 9 4;
+#X connect 22 0 8 0;
+#X connect 23 0 11 0;
+#X connect 24 0 26 0;
+#X connect 24 0 2 1;
+#X connect 25 0 24 4;
+#X connect 27 0 24 0;
+#X restore 250 247 pd output;
+#N canvas 179 196 875 562 Today 0;
+#X obj 462 349 cnv 15 307 244 empty empty empty 20 12 0 14 #00e400
+#404040 0;
+#X obj 774 148 cnv 15 170 247 empty empty empty 20 12 0 14 #f40400
+#404040 0;
+#X obj 447 165 cnv 15 157 163 empty empty empty 20 12 0 14 #e2d600
+#404040 0;
+#X obj 675 139 tgl 15 0 empty empty empty 17 7 0 10 #fcfcfc #000000
+#000000 0 1;
+#X obj 643 373 metro 300;
+#X obj 656 175 *;
+#X obj 646 540 tabread data1;
+#X obj 649 419 counter;
+#X floatatom 688 498 5 0 0 0 - - -, f 5;
+#X obj 675 109 bng 15 250 50 0 empty switch empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X obj 549 110 tgl 15 0 empty dsp empty 17 7 0 10 #fcfcfc #000000 #000000
+1 1;
+#X floatatom 730 571 5 0 0 0 - - -, f 5;
+#X obj 818 253 counter;
+#X obj 798 225 bng 15 250 50 0 empty speed empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X floatatom 851 351 5 0 0 0 - - -, f 5;
+#X msg 903 253 5;
+#X obj 809 353 * 100;
+#X msg 478 434 \; data1 read Today.txt;
+#X obj 517 240 counter;
+#X obj 499 173 bng 15 250 50 0 empty direction empty 17 7 0 10 #fcfcfc
+#000000 #000000;
+#X floatatom 481 288 5 0 0 0 - - -, f 5;
+#X msg 567 208 1;
+#X obj 651 602 s fre;
+#X obj 506 112 tgl 15 0 empty dsp empty 17 7 0 10 #fcfcfc #000000 #000000
+1 1;
+#X obj 578 602 s data;
+#X obj 721 602 s currentData;
+#X obj 458 604 s currentTime;
+#X obj 823 301 + 1;
+#X msg 729 390 19;
+#X obj 657 458 + 1;
+#X text 7 184 The yellow area is the function works for changing the
+direction. By using a counter with only 0 and 1 included \, it can
+change the playing direction of the checking process.;
+#X text 900 84 The red area works for changing the playing speed. As
+the minimum value of the counter is 0 \, the output plus one and then
+multiply with 100 so that it can be sent to metro to change the speed.
+;
+#X text 150 43 These triggers work for initialize the parameters for
+the counters. They connect with the DSP Control which ensure they will
+be trigged firstly.;
+#X text 9 373 The green area works for the main function for the system
+\, which is the checking process. It firstly imports the data from
+the .txt file into an array. Then using counter imports the data from
+array for further usages. The first value in computer is 0 while the
+first value in real life is 1 \, this is the reason why the output
+plus 1 for further usage. This ensures the user can understand what
+they can see.;
+#X text 425 644 CurrentTime is sent to the number box in UI so that
+user could see which data is currently playing. Data is sent to the
+dynamic vertical bar in UI for the graphic. Fre is sent to output for
+playing the data. CurrentData is sent ot the number box for checking
+the current playing data.;
+#X obj 666 64 notein 4;
+#X obj 798 177 notein 1;
+#X connect 3 0 5 0;
+#X connect 4 0 7 0;
+#X connect 5 0 4 0;
+#X connect 5 0 17 0;
+#X connect 6 0 11 0;
+#X connect 6 0 22 0;
+#X connect 6 0 25 0;
+#X connect 7 0 29 0;
+#X connect 7 0 24 0;
+#X connect 9 0 3 0;
+#X connect 10 0 28 0;
+#X connect 10 0 5 1;
+#X connect 12 0 27 0;
+#X connect 13 0 12 0;
+#X connect 15 0 12 4;
+#X connect 16 0 4 1;
+#X connect 18 0 20 0;
+#X connect 18 0 7 1;
+#X connect 19 0 18 0;
+#X connect 21 0 18 4;
+#X connect 23 0 15 0;
+#X connect 23 0 21 0;
+#X connect 27 0 16 0;
+#X connect 27 0 14 0;
+#X connect 28 0 7 4;
+#X connect 29 0 6 0;
+#X connect 29 0 8 0;
+#X connect 29 0 26 0;
+#X connect 35 0 9 0;
+#X connect 36 0 13 0;
+#X restore 252 212 pd Today;
+#X obj 64 165 r dsp;
+#X msg 64 209 \; pd dsp \$1;
+#X msg 64 266 \; pd dsp 0;
+#X text 340 181 Pd Today is the main function area of this system.
+;
+#X text 342 276 Pd output responses for the output sound of this system.
+;
+#X connect 2 0 3 0;
+#X connect 3 0 4 0;
+#X restore 682 457 pd patch;
+#X obj 385 364 tgl 15 0 dsp empty DSP\ Control 17 7 0 10 #fcfcfc #000000
+#000000 1 1;
+#X obj 580 404 bng 15 250 50 0 speed empty Speed\ Control 17 7 0 10
+#fcfcfc #000000 #000000;
+#X obj 714 403 bng 15 250 50 0 frequency empty Frequency\ Control 17
+7 0 10 #fcfcfc #000000 #000000;
+#X obj 866 403 bng 15 250 50 0 volume empty Volume\ Control 17 7 0
+10 #fcfcfc #000000 #000000;
+#X obj 996 403 bng 15 250 50 0 direction empty Direction\ Control 17
+7 0 10 #fcfcfc #000000 #000000;
+#X obj 472 168 hsl 680 172 0 20 0 0 empty data empty -2 -8 0 10 #fcfcfc
+#000000 #000000 54320 1;
+#N canvas 0 22 450 300 (subpatch) 0;
+#X array data1 20 float 3 black black;
+#A 0 81 85 87 89 90 95 90 97 100 102 105 107 108 110 110 112 114 113
+116 120;
+#X coords 0 150 20 0 685 172 1;
+#X restore 472 168 graph;
+#X floatatom 930 137 5 0 0 0 currentHeartBeat currentData -, f 5;
+#X floatatom 733 137 5 0 0 0 currentTime currentTime -, f 5;
+#X obj 384 401 bng 15 250 50 0 switch empty On/Off\ Switch 17 7 0 10
+#fcfcfc #000000 #000000;
+#X text -75 20 Welcome to heartbeat checker! By using this system \,
+you can easily check your heartbeat whether it was on a danger rate
+or not. You can check it after a short time sport \, or you check it
+after a whole day. Several functions have been set so that you could
+make double check or you could focus on some periods that you would
+like to foucs. Let's get start!;
+#X text -59 263 DSP Control is the switch of the whole system. You
+could activate the system by just clicking it.;
+#X text -60 323 On/Off Switch is the switcher works for turn on/off
+the checking process. By clicking this button \, you could start to
+check your heartbeat.;
+#X text -60 399 Speed Control could help you adjust the playing speed
+\, so that you could focus on some period while pass some other periods.
+Some pre-set speed mods have been set so you could just click the button
+to change it;
+#X text -60 494 Frequency Control could help you while you are not
+sensitive to some specific frequency range. By clicking the button
+\, you could change the output sound to some other frequency range
+so that you could hear it clearly.;
+#X text -58 588 Volume Control could help with changing the volume
+of the output sound. Just by clicking it to change it.;
+#X text -59 647 Direction Control could help you while you would like
+to have a double check for some previous data. You could just click
+the button to change the checking upside down. Another click could
+help you change it back.;
+#X text -59 143 This is a simple system to use. The number boxes on
+the top can show you the current time and the current heartbeat. The
+graphic down below shows you the whole heartbeat rate and which is
+checking now. Several buttons down below are the functions which can
+support you to use this system more efficient.Here are some instructions:
+;
